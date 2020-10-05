@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/assets/css/reset.css?v=2" rel="stylesheet">
+  <link href="/assets/css/style.css?v=3" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Sansita+Swashed:wght@400;700&display=swap" rel="stylesheet">
+  </script>
+  <style>
+    body {
+      background: #f9f9f9;
+    }
+    .container {
+  margin: 0 auto;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+@media only screen and (min-width: 576px) {
+  .container {
+    width: 560px;
+    max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+      width: 752px;
+      max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .container {
+      width: 976px;
+      max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+      width: 1184px;
+      max-width: 100%;
+  }
+}
+.top-wrapper {
+  min-height: 100vh;
+}
+
+header {
+  padding: 0;
+  flex-direction: row;
+  background: #263238;
+  color: #FFF;
+  text-align: center;
+}
+
+header h1 {
+  padding: 30px 20px;
+  display: block;
+  font: bold 2em 'Sansita Swashed', sans-serif;
+}
+
+nav {
+  display: block;
+  text-align: right;
+  background: rgba(76,175,80,1);
+  min-height: 50px;
+  margin: 0 auto 0 auto;
+  line-height: 50px;
+  text-align: center;
+}
+
+nav ul li {
+  font: 1em 'Roboto', sans-serif;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+nav ul li a {
+  line-height: 50px;
+    color: #FFF;
+    font-weight: 700;
+    padding: 22px 15px 18px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 576px){
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+main {
+  padding: 30px 0;
+}
+
+article {
+  padding: 16px;
+    background: #FFF;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin: 16px 0;
+}
+
+article .article-title {
+  font: bold 1.2em 'Roboto', sans-serif;
+}
+
+article .article-title a {
+  text-decoration: none;
+}
+
+article .article-meta {
+  font: 1.0em 'Roboto', sans-serif;
+  color: #757575;
+}
+
+article .article-content {
+  font: 1em 'Roboto', sans-serif;
+}
+
+article .article-footer {
+  margin-top: 8px;
+  text-align: center;
+  background: #FFF;
+}
+
+article .read-more {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+footer {
+  border-top: 1px solid #EEE;
+  padding: 16px;
+  text-align: center;
+  background: #FFF;
+  font: bold 0.8em 'Roboto', sans-serif;
+}
+  </style>
+</head>
+
+<body>
+
+  <div class='top-wrapper'>
+    <header>
+      <div class='container' style="padding-bottom: 0; padding-top: 0;">
+        <h1>Irvan's blog</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Projects</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class='container'>
+        {{range .articles}}
+        <article>
+          <h2 class='article-title'><a class='read-more' href='/articles/{{.ID}}'>{{.Title}}</a></h2>
+          <div class='article-meta'>
+            Posted by <b>{{.Author.Name}}</b> at <i>{{.FormattedCreateDate}}</i>
+          </div>
+          <div class='article-content'>
+            {{.Summary}}
+          </div>
+          <div class='article-footer'>
+            <a class='read-more' href='/articles/{{.ID}}'>Read more</a>
+          </div>
+        </article>
+        {{else}}
+        No post found
+        {{end}}
+        {{template "pagination" .pageInfo}}
+      </div>
+    </main>
+  </div>
+  <footer>
+    Copyright (c) 2020 by Irvan Herz
+  </footer>
+</body>
+
+</html>
