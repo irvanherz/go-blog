@@ -1,6 +1,5 @@
-# GoBlog
+# Goblog
 
-Foobar is a Python library for dealing with word pluralization.
 Goblog is a simple personal blog. Mainly written in Go with Gin as framework.
 
 ## Installation
